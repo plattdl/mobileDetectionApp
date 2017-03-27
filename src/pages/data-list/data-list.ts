@@ -5,6 +5,7 @@ import { DataDetailPage } from "../data-detail/data-detail";
 import {
   SentinelTwoService
 } from "../../services/sentinelTwo.service";
+import { SentinelScene } from "../../core/sentinelScene";
 /*
   Generated class for the DataList page.
 
@@ -17,21 +18,11 @@ import {
 })
 export class DataListPage {
 responseList: Array <any>;
-itemList: Array <any>;
+itemList: Array <SentinelScene>;
   constructor(public navCtrl: NavController, public navParams: NavParams, private sentinelTwo: SentinelTwoService) {}
 
   ionViewDidLoad() {
-    this.responseList = this.navParams.get('data');
-    this.itemList = [];//init item list 
-    for (let x in this.responseList) {
-      let resp = this.responseList[x].Key[0];
-      //add information that we want in the list for this scene
-      this.itemList.push({
-        jsonUri:resp,
-        thumbnailUri: this.sentinelTwo.baseUrl + '/' +  resp.replace('tileInfo.json', 'preview.jpg'),
-        metadataUri: this.sentinelTwo.baseUrl + '/' + resp.replace('tileInfo.json', 'metadata.xml')
-      });
-    };
+    this.itemList = this.navParams.get('data');
     console.log('ionViewDidLoad DataListPage');
   }
   viewDataDetail(item:TestClass){

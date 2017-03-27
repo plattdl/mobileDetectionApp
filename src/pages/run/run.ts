@@ -17,6 +17,7 @@ import {
   SentinelTwoService
 } from "../../services/sentinelTwo.service";
 import * as xml2js from "xml2js"
+import { SentinelScene } from "../../core/sentinelScene";
 /*
   Generated class for the Run page.
 
@@ -36,6 +37,7 @@ export class RunPage {
   prefix: string;
 
   searchResults: Array < any > ;
+  sentinelScenes: Array < SentinelScene > ;
   sentResults: Array < any > ;
   delimiter: string;
 
@@ -49,6 +51,7 @@ export class RunPage {
     this.startDate = moment().subtract(7, 'days').toISOString();
     this.cloudCover = 20;
     this.location = 'Boulder';
+    this.sentinelScenes = [];
   }
   search() {
     this.sentinelTwo.searchSentinel(this.prefix,this.delimiter).subscribe(results => {
@@ -56,12 +59,17 @@ export class RunPage {
       xml2js.parseString(body, (err, results) => {
         this.searchResults = results.ListBucketResult.Contents.filter(item => {
           let itemKey:string = item.Key[0];
-          if (itemKey.endsWith('tileInfo.json')){
+          if (itemKey.endsWith('preview.jpg')){
             return itemKey;
           }
         });
+       this.searchResults.forEach(element => {
+        let newScene = new SentinelScene() 
+        newScene.thumbnail = this.sentinelTwo.baseUrl + '/'+  element.Key
+         this.sentinelScenes.push(newScene);
+       }); 
         this.navCtrl.push(DataListPage, {
-          data: this.searchResults
+          data: this.sentinelScenes
         });
       });
     });

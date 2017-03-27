@@ -27,5 +27,14 @@ export class SentinelTwoService {
         search: params
     });
   }
+  searchSentinelThumb(prefix: string): Observable<any> {
+  let params = new URLSearchParams();
+  params.append('delimiter','/');
+  params.append('prefix',prefix);
+   
+    return this.http.get(this.baseUrl, {
+        search: params
+    });
+  }
 
 }
