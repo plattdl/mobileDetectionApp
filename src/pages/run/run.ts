@@ -54,22 +54,16 @@ export class RunPage {
     this.sentinelTwo.searchSentinel(this.prefix,this.delimiter).subscribe(results => {
       let body = results.text()
       xml2js.parseString(body, (err, results) => {
-        let tileInfos = results.ListBucketResult.Contents.filter(item => {
+        this.searchResults = results.ListBucketResult.Contents.filter(item => {
           let itemKey:string = item.Key[0];
           if (itemKey.endsWith('tileInfo.json')){
             return itemKey;
           }
         });
-        console.log(tileInfos)
-        let keys = results.ListBucketResult.Contents.map(item => item.Key[0])
-        console.log(keys)
+        this.navCtrl.push(DataListPage, {
+          data: this.searchResults
+        });
       });
     });
-    this.testService.getAlbums().subscribe(albums => {
-      this.searchResults = albums;
-       this.navCtrl.push(DataListPage, {
-         test: this.searchResults
-       })
-    })
   }
 }
