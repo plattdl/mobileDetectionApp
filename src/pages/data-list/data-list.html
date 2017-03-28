@@ -14,33 +14,6 @@
 
 
 <ion-content>
-  <ion-card *ngFor="let item of itemList">
-    <img [src]="item.thumbnail">
-      <ion-row>
-    <ion-col>
-      <button ion-button icon-left clear small>
-        <ion-icon name="map"></ion-icon>
-        <div>Map</div>
-      </button>
-    </ion-col>
-    <ion-col>
-      <button ion-button icon-left clear small>
-        <ion-icon name="information-circle"></ion-icon>
-        <div>Metadata</div>
-      </button>
-    </ion-col>
-    <ion-col>
-      <button ion-button icon-left clear small>
-        <ion-icon name="play"></ion-icon>
-        <div>Analytics</div>
-      </button>
-    </ion-col>
-    <!--<ion-col center text-center>
-      <ion-note>
-        11h ago
-      </ion-note>
-    </ion-col>-->
-  </ion-row> 
-  </ion-card>
-  
+  <sentinel-card [item]="item" *ngFor="let item of itemList">
+  </sentinel-card>
 </ion-content>

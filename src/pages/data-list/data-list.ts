@@ -27,8 +27,7 @@ itemList: Array <SentinelScene>;
   }
   viewDataDetail(item:TestClass){
     console.log(item)
-    this.navCtrl.push(DataDetailPage,
-    {
+    this.navCtrl.push(DataDetailPage,{
      dataPushed: item
     });
   }

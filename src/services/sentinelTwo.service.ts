@@ -16,15 +16,19 @@ export class SentinelTwoService {
   constructor(private http: Http) {}
 
   getTileInfo(path: string) {
+    let params = new URLSearchParams();
+    return this.http.get(path, {
+      search: params
+    }).map(res => res.json());
+  };
 
-  }
   searchSentinel(prefix: string, delimiter:string): Observable<any> {
-  let params = new URLSearchParams();
-  params.append('delimiter',delimiter);
-  params.append('prefix',prefix);
+    let params = new URLSearchParams();
+    params.append('delimiter',delimiter);
+    params.append('prefix',prefix);
    
     return this.http.get(this.baseUrl, {
-        search: params
+      search: params
     });
   }
   searchSentinelThumb(prefix: string): Observable<any> {

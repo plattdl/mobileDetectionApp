@@ -63,11 +63,19 @@ export class RunPage {
             return itemKey;
           }
         });
-       this.searchResults.forEach(element => {
-        let newScene = new SentinelScene() 
-        newScene.thumbnail = this.sentinelTwo.baseUrl + '/'+  element.Key
-         this.sentinelScenes.push(newScene);
-       }); 
+
+        this.searchResults.forEach(element => {
+          let newScene = new SentinelScene() 
+          let split = element.Key[0].split('/')
+          newScene.thumbnailUri = this.sentinelTwo.baseUrl + '/'+  element.Key[0]
+          newScene.tileInfoUri = this.sentinelTwo.baseUrl + '/'+  element.Key[0].replace('preview.jpg', 'tileInfo.json')
+          newScene.metadataUri = this.sentinelTwo.baseUrl + '/'+  element.Key[0].replace('preview.jpg', 'tileInfo.json')
+          newScene.year = split[4]
+          newScene.month = split[5]
+          newScene.day = split[6]
+          this.sentinelScenes.push(newScene);
+        }); 
+
         this.navCtrl.push(DataListPage, {
           data: this.sentinelScenes
         });

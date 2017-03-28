@@ -12,15 +12,20 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { TestService } from "../services/test.service";
 import { DataDetailPage } from "../pages/data-detail/data-detail";
 import { SentinelTwoService } from "../services/sentinelTwo.service";
+import { SentinelCardComponent } from "../components/sentinel-card/sentinel-card";
+import { MapPreviewPage } from "../pages/map-preview/map-preview";
+
 @NgModule({
   declarations: [
     MyApp,
+    SentinelCardComponent,
     RunPage,
     DataListPage,
     DataDetailPage,
     ResultsPage,
     SettingsPage,
-    TabsPage
+    TabsPage,
+    MapPreviewPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -33,7 +38,8 @@ import { SentinelTwoService } from "../services/sentinelTwo.service";
     DataDetailPage,
     ResultsPage,
     SettingsPage,
-    TabsPage
+    TabsPage,
+    MapPreviewPage
   ],
   providers: [
     StatusBar,

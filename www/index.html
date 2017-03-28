@@ -25,6 +25,45 @@
 
   <link href="build/main.css" rel="stylesheet">
 
+  <!--
+  <meta http-equiv="Content-Security-Policy"
+        content="
+            default-src
+                'self'
+                http://js.arcgis.com
+                https://js.arcgis.com
+                https://static.arcgis.com
+                https://services.arcgisonline.com
+                http://services.arcgisonline.com
+                http://static.arcgis.com
+                https://server.arcgisonline.com;
+            font-src
+                'self'
+                http://js.arcgis.com
+                https://js.arcgis.com
+                data:;
+            style-src 'self' https://js.arcgis.com 'unsafe-inline';
+            img-src
+              'self'
+              *
+              data:;
+            script-src
+              'self'
+              http://js.arcgis.com
+              https://js.arcgis.com http://unpkg.com 'unsafe-eval'">
+  -->
+
+  <link rel="stylesheet" href="https://js.arcgis.com/3.19/esri/css/esri.css">
+
+  <style>
+    html, body, #map {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+
 </head>
 <body>
 

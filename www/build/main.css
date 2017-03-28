@@ -24516,3 +24516,27 @@ ion-navbar.toolbar {
     padding-top: calc(16px + 20px);
   }
 }
+
+.spinner svg {
+  width: 50px;
+  height: 50px;
+  fill: #387ef5;
+}
+
+.placeholder {
+  height: auto;
+  width: 100%;
+  text-align: center;
+  padding-top: 44%;
+  padding-bottom: 44%;
+}
+
+p.year {
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+img.thumbNail {
+  font-size: 15px;
+}
