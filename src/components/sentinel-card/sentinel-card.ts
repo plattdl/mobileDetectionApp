@@ -43,6 +43,7 @@ export class SentinelCardComponent implements OnInit {
       this.item.extYmin = LL[1];
       this.item.extYmax = TR[1];
       this.item.extCoordinates = results.tileGeometry.coordinates;
+      this.item.utmZone = results.utmZone;
     });
   };
   

@@ -1,6 +1,9 @@
 /**
  * Class for info regarding sentinel scene info
  */
+
+export type hemisphere = 'N' | 'S';
+
 export class SentinelScene {
     thumbnailUri: string
     tileInfoUri: string
@@ -16,4 +19,6 @@ export class SentinelScene {
     year: string
     month: string
     day: string
+    hemisphere: hemisphere
+    utmZone: number
 }

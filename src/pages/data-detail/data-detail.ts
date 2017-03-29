@@ -20,7 +20,6 @@ item:any;
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DataDetailPage');
-    console.log(this.navParams);
     let data = this.navParams.get('data');
     this.item = data;
   }

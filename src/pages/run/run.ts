@@ -17,7 +17,7 @@ import {
   SentinelTwoService
 } from "../../services/sentinelTwo.service";
 import * as xml2js from "xml2js"
-import { SentinelScene } from "../../core/sentinelScene";
+import { SentinelScene, hemisphere } from "../../core/sentinelScene";
 /*
   Generated class for the Run page.
 
@@ -41,6 +41,9 @@ export class RunPage {
   sentResults: Array < any > ;
   delimiter: string;
 
+  //flag for north sourth equator
+  hemisphere: hemisphere;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, private testService: TestService, private sentinelTwo: SentinelTwoService) {}
 
   ionViewDidLoad() {
@@ -54,6 +57,13 @@ export class RunPage {
     this.sentinelScenes = [];
   }
   search() {
+    //hard code the north/south right now
+    if ( 1 > 0) {
+      this.hemisphere = 'N';
+    } else {
+      this.hemisphere = 'S';
+    }
+
     this.sentinelTwo.searchSentinel(this.prefix,this.delimiter).subscribe(results => {
       let body = results.text()
       xml2js.parseString(body, (err, results) => {
@@ -73,6 +83,7 @@ export class RunPage {
           newScene.year = split[4]
           newScene.month = split[5]
           newScene.day = split[6]
+          newScene.hemisphere = this.hemisphere;
           this.sentinelScenes.push(newScene);
         }); 
 
