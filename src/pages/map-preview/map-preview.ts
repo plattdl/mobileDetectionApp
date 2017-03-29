@@ -51,25 +51,31 @@ export class MapPreviewPage {
           zoom: 8,
           basemap: "topo"
         });
+        let convert = proj4('+proj=utm +zone=10 +ellps=WGS84 +datum=WGS84 +units=m +no_defs','+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext  +no_defs');
 
         let mil = new MapImageLayer({});
 
-        let mi = new MapImage({
-          'extent': { 'xmin': this.item.extXmin, 'ymin': this.item.extYmin, 'xmax': this.item.extXmax, 'ymax': this.item.extYmax, 'spatialReference': { 'wkid': this.item.epsg }},
-          'href': this.item.thumbnailUri
-        });
-
-        //make polygon of our coordinates
         let LL = [this.item.extXmin, this.item.extYmin];
         let TR = [this.item.extXmax, this.item.extYmax];
-        console.log(LL);
-        //let convert = proj4('EPSG:' + String(this.item.epsg), 'EPSG:102100');
-        //console.log(convert.forward(LL))
-        console.log(LL);
+        let convertedLL = convert.forward(LL);
+        let convertedTR = convert.forward(TR);
+        
+        let mi = new MapImage({
+          'extent': { 'xmin': convertedLL[0], 'ymin': convertedLL[1], 'xmax': convertedTR[0], 'ymax': convertedTR[1], 'spatialReference': { 'wkid': 3857 }},
+          'href': this.item.thumbnailUri
+        });
+        
+        // let mi = new MapImage({
+        //   'extent': { 'xmin': this.item.extXmin, 'ymin': this.item.extYmin, 'xmax': this.item.extXmax, 'ymax': this.item.extYmax, 'spatialReference': { 'wkid': 102100 }},
+        //   'href': this.item.thumbnailUri
+        // });
+
+        mil.addImage(mi);
         //add to our map
-        //mil.addImage(mi);
-        //map.addLayer(mil);
-        //map.setExtent(mi.extent);
+        map.addLayer(mil);
+        //This isnt working right now. We need to check to see if the extent is actually right.
+        // If extent is right, then lets just zoom to a point instead. -- Dan
+        map.setExtent(mi.extent);
       });
 
     });
