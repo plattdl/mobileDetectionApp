@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { SentinelScene } from "../../core/sentinelScene";
 import { EsriLoaderService } from 'angular2-esri-loader';
+import { proj4 } from 'proj4';
 
 /*
   Generated class for the MapPreview page.
@@ -59,17 +60,16 @@ export class MapPreviewPage {
         });
 
         //make polygon of our coordinates
-        let imgSref = new SpatialReference(this.item.epsg)
-        let LL = new Point(this.item.extXmin, this.item.extYmin, imgSref);
-        let TR = new Point(this.item.extXmax, this.item.extYmax, imgSref);
-        let result = webMercatorUtils.project(LL, map);
-        console.log(result);
-
+        let LL = [this.item.extXmin, this.item.extYmin];
+        let TR = [this.item.extXmax, this.item.extYmax];
+        console.log(LL);
+        //let convert = proj4('EPSG:' + String(this.item.epsg), 'EPSG:102100');
+        //console.log(convert.forward(LL))
+        console.log(LL);
         //add to our map
-        mil.addImage(mi);
-        map.addLayer(mil);
-        map.setExtent(mi.extent);
-        
+        //mil.addImage(mi);
+        //map.addLayer(mil);
+        //map.setExtent(mi.extent);
       });
 
     });
