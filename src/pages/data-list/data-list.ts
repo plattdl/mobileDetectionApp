@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { TestClass } from "../../core/test";
 import { DataDetailPage } from "../data-detail/data-detail";
 import {
   SentinelTwoService
@@ -24,11 +23,5 @@ itemList: Array <SentinelScene>;
   ionViewDidLoad() {
     this.itemList = this.navParams.get('data');
     console.log('ionViewDidLoad DataListPage');
-  }
-  viewDataDetail(item:TestClass){
-    console.log(item)
-    this.navCtrl.push(DataDetailPage,{
-     dataPushed: item
-    });
   }
 }

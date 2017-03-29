@@ -2,7 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { SentinelScene } from "../../core/sentinelScene";
 import { EsriLoaderService } from 'angular2-esri-loader';
-import { proj4 } from 'proj4';
+import proj4 from 'proj4';
 
 /*
   Generated class for the MapPreview page.
